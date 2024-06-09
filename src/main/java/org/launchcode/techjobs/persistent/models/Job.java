@@ -9,9 +9,8 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne()
     @NotNull(message = "Employer is required")
-    @JoinColumn(name = "employer_id")
     private Employer employer;
     private String skills;
 
