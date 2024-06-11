@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity {
 
-    @ManyToOne()
+    @ManyToOne
     @NotNull(message = "Employer is required")
     private Employer employer;
 
@@ -18,7 +18,6 @@ public class Job extends AbstractEntity {
     private List<Skill> skills = new ArrayList<>();
 
     // Constructors.
-
 
     public Job(Employer employer, List<Skill> skills) {
         this.employer = employer;
@@ -45,7 +44,7 @@ public class Job extends AbstractEntity {
         this.skills = skills;
     }
 
-    public void addTag(Skill skill) {
+    public void addSkill(Skill skill) {
         this.skills.add(skill);
     }
 }
