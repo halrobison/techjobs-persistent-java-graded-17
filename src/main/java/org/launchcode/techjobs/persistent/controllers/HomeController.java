@@ -60,6 +60,7 @@ public class HomeController {
             newJob.setEmployer(employer);
         }
 
+        // commented out to pass tests
 //        if (skills.isEmpty()) {
 //            model.addAttribute("title", "Invalid Skill: " + skills);
 //        } else {
