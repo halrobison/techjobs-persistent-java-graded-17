@@ -52,36 +52,19 @@ public class HomeController {
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
-//        System.out.println("Received employerId: " + employerId);
-//        System.out.println("Received skills: " + skills);
-//        System.out.println("Job details: " + newJob);
-
         Optional<Employer> result = employerRepository.findById(employerId);
         if (result.isEmpty()) {
             model.addAttribute("title", "Invalid Employer: " + employerId);
         } else {
             Employer employer = result.get();
             newJob.setEmployer(employer);
-            model.addAttribute("title", "Jobs Under Employer: " + employer.getName());
-            model.addAttribute("employers", employer.getJobs());
         }
 
-//        System.out.println("Job after setting employer: " + newJob.getEmployer());
-
-
-        if (skills.isEmpty()) {
-            model.addAttribute("title", "Invalid Skill: " + skills);
-        } else {
+//        if (skills.isEmpty()) {
+//            model.addAttribute("title", "Invalid Skill: " + skills);
+//        } else {
             List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-            model.addAttribute("title", "Jobs Under Skill: " + skillObjs);
-            newJob.setSkills(skillObjs);}
-
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Job");
-//            model.addAttribute(new Job());
-//            model.addAttribute("employers", employerRepository.findAll());
-//            model.addAttribute("skills", skillRepository.findAll());
-//            return "add";
+            newJob.setSkills(skillObjs);
 //        }
 
         jobRepository.save(newJob);
